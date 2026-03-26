@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="MainController"
+            prefWidth="700" prefHeight="500"
+            styleClass="root-pane">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox styleClass="sidebar" spacing="6">
+            <Label text="VIEWS" styleClass="sidebar-title"/>
+            <Button text="All Tasks" styleClass="nav-btn,active-btn" onAction="#showAllTasks"/>
+            <Button text="High Priority" styleClass="nav-btn" onAction="#showHighPriority"/>
+            <Button text="Completed" styleClass="nav-btn" onAction="#showCompleted"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="Ask AI" styleClass="nav-btn,ai-nav-btn" onAction="#askAI"/>
+        </VBox>
+    </left>
+
+    <!-- Main content -->
+    <center>
+        <VBox>
+            <!-- Toolbar -->
+            <HBox styleClass="toolbar" spacing="8" alignment="CENTER_LEFT">
+                <Label fx:id="toolbarTitle" text="All Tasks" styleClass="toolbar-title" HBox.hgrow="ALWAYS"/>
+                <Button text="+ Add Task" styleClass="btn-primary" onAction="#openAddTask"/>
+                <Button text="AI Organize" styleClass="btn-ai" onAction="#askAI"/>
+            </HBox>
+
+            <!-- Task list -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-pane">
+                <VBox fx:id="taskListContainer" styleClass="task-list" spacing="8"/>
+            </ScrollPane>
+
+            <!-- AI Panel -->
+            <VBox styleClass="ai-panel" spacing="6">
+                <Label text="Claude AI suggestion" styleClass="ai-label"/>
+                <Label fx:id="aiSuggestion" text="Click 'AI Organize' to get a suggestion."
+                       styleClass="ai-bubble" wrapText="true"/>
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>
